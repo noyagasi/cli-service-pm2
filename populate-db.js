@@ -25,10 +25,11 @@ function runServicePopulate(service, env) {
   console.log('run', service)
   const isExists = existsSync(scripts[service]);
   if (!isExists) {
+    console.log('script not exist for: ', service);
     return Promise.resolve();
   }
   return new Promise((resolve, reject) => {
-    const folder = scripts[service].split('/').splice(-1, 1).join('/');
+    const folder = scripts[service].split('/').slice(0, -1).join('/');
 
     const f = fork(folder + '/helpers/init.js', null, { env })
 
