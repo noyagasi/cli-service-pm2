@@ -1,6 +1,6 @@
 {
   "name": "@greenpress/cli-service-pm2",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "bin": {
     "gp-cli-service-pm2-dev": "bin/dev",
