@@ -1,5 +1,7 @@
+#!/usr/bin/env node
+
 const { fork } = require('child_process');
-const { fileExistsSync } = require('fs');
+const { existsSync } = require('fs');
 const apps = require('./apps');
 const { tenant, scripts } = require('./config');
 
@@ -21,7 +23,7 @@ function runServicesPopulations() {
 
 function runServicePopulate(service, env) {
   console.log('run', service)
-  const isExists = fileExistsSync(scripts[service]);
+  const isExists = existsSync(scripts[service]);
   if (!isExists) {
     return Promise.resolve();
   }
