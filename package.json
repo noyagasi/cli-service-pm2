@@ -1,0 +1,25 @@
+{
+  "name": "@greenpress/cli-service-pm2",
+  "version": "0.0.1",
+  "description": "",
+  "bin": {
+    "gp-cli-service-pm2-dev": "bin/dev",
+    "gp-cli-service-pm2-prod": "bin/prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greenpress/cli-service-pm2.git"
+  },
+  "author": "David Meir-Levy <davidmeirlevy@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/greenpress/cli-service-pm2/issues"
+  },
+  "homepage": "https://github.com/greenpress/cli-service-pm2#readme",
+  "dependencies": {
+    "pm2": "^4.4.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
