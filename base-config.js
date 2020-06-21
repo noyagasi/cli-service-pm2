@@ -2,6 +2,9 @@ const IS_PROD = process.env.NODE_ENV === 'production'
 
 const localhost = '127.0.0.1';
 const port = process.env.PORT || 3000;
+
+const frontendServiceBasicScript = 'cd node_modules/@greenpress/blog-front && npm run build'
+
 module.exports = {
   tenant: process.env.BASIC_TENANT || '0',
   memoryLimitation: process.env.MAX_MEMORY_USAGE,
@@ -42,7 +45,7 @@ module.exports = {
     auth: process.env.AUTH_SERVICE_SCRIPT || './node_modules/@greenpress/auth/index.js',
     content: process.env.CONTENT_SERVICE_SCRIPT || './node_modules/@greenpress/content/index.js',
     assets: process.env.ASSETS_SERVICE_SCRIPT || './node_modules/@greenpress/assets/index.js',
-    front: process.env.FRONT_SERVICE_SCRIPT || 'cd node_modules/@greenpress/blog-front && npm start',
+    front: process.env.FRONT_SERVICE_SCRIPT || (IS_PROD ? frontendServiceBasicScript + ' && npm start' : frontendServiceBasicScript + '&& npm run dev'),
     admin: process.env.ADMIN_SERVICE_SCRIPT || './node_modules/@greenpress/admin/server.js',
   }
 }
