@@ -1,15 +1,4 @@
-const baseConfig = require('./base-config');
-const projectConfigPath = '../../greenpress.config.js';
-const extendConfig = require('fs').existsSync(projectConfigPath) ? require(projectConfigPath) : {};
-
-const config = typeof extendConfig === 'function' ? extendConfig(baseConfig) : {
-  ...baseConfig,
-  ...extendConfig,
-  scripts: {
-    ...baseConfig.scripts,
-    ...extendConfig.scripts,
-  }
-};
+const config = require('./config');
 
 const DEV = 'development'
 const PROD = 'production'

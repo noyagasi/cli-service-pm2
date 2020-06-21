@@ -1,10 +1,11 @@
 {
   "name": "@greenpress/cli-service-pm2",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "",
   "bin": {
     "gp-cli-service-pm2-dev": "bin/dev",
-    "gp-cli-service-pm2-prod": "bin/prod"
+    "gp-cli-service-pm2-prod": "bin/prod",
+    "gp-cli-service-pm2-populate-db": "populate-db.js"
   },
   "repository": {
     "type": "git",
