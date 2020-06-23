@@ -7,6 +7,8 @@ const frontendServiceBasicScript = 'cd node_modules/@greenpress/blog-front && np
 
 module.exports = {
   tenant: process.env.BASIC_TENANT || '0',
+  excludedServices: process.env.npm_config_x ? process.env.npm_config_x.split(',') : [],
+  noDocker: process.env.npm_config_noDocker || false,
   memoryLimitation: process.env.MAX_MEMORY_USAGE,
   mongoUri: process.env.MONGODB_URI || 'mongodb://localhost/greenpress',
   jwtSecret: process.env.JWT_SECRET || 'a secret phrase!!',

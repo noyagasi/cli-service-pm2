@@ -1,3 +1,4 @@
+const { excludedServices } = require('./config');
 const apps = require('./apps');
 
 module.exports = {
@@ -9,5 +10,5 @@ module.exports = {
     apps.assets,
     apps.admin,
     apps.front
-  ]
+  ].filter(({ name }) => !excludedServices.includes(name))
 };

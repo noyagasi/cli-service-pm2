@@ -40,7 +40,7 @@ const authServiceVariables = {
   REDIS_URL: config.redisUrl
 }
 
-const db = process.env.npm_config_noDocker ?
+const db = config.noDocker ?
   {
     name: 'db',
     script: 'mongod',
