@@ -123,6 +123,9 @@ module.exports = {
       IP: config.assetsIp,
       SECRETS_TOKEN: config.secretsServiceSecret,
       INTERNAL_SECRET: config.internalServicesSecret,
+      SECRETS_SERVICE_URL: config.secretsIp,
+      SECRETS_SERVICE_PROTOCOL: config.secretsProtocol,
+      SECRETS_SERVICE_PORT: config.secretsPort,
       ...authServiceRef
     },
     env_production: {
@@ -132,6 +135,9 @@ module.exports = {
       IP: config.assetsIp,
       SECRETS_TOKEN: config.assetsSecretsToken,
       INTERNAL_SECRET: config.internalServicesSecret,
+      SECRETS_SERVICE_URL: config.secretsIp,
+      SECRETS_SERVICE_PROTOCOL: config.secretsProtocol,
+      SECRETS_SERVICE_PORT: config.secretsPort,
       ...authServiceRef
     }
   },

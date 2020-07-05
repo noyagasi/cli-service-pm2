@@ -33,6 +33,7 @@ module.exports = {
   assetsIp: process.env.ASSETS_IP || localhost,
   adminPort: process.env.ADMIN_PORT || 3001,
   adminIp: process.env.ADMIN_IP || localhost,
+  secretsProtocol: process.env.SECRETS_SERVICE_PROTOCOL || 'http',
   port,
   roles: {
     all: 'user,editor,admin',
