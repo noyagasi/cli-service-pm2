@@ -1,6 +1,8 @@
-const baseConfig = require('./base-config');
-const projectConfigPath = '../../../greenpress.config.js';
-const extendConfig = require('fs').existsSync(projectConfigPath) ? require(projectConfigPath) : {};
+const baseConfig = require('./base-config')
+const { join } = require('path')
+const { existsSync } = require('fs')
+const extendConfigPath = join(__dirname, '../../../greenpress.config.js');
+const extendConfig = existsSync(extendConfigPath) ? require(extendConfigPath) : { exists: false };
 
 const config = typeof extendConfig === 'function' ? extendConfig(baseConfig) : {
   ...baseConfig,
@@ -9,6 +11,6 @@ const config = typeof extendConfig === 'function' ? extendConfig(baseConfig) : {
     ...baseConfig.scripts,
     ...extendConfig.scripts,
   }
-};
+}
 
-module.exports = config;
+module.exports = config
