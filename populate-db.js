@@ -20,13 +20,29 @@ function runServicesPopulations() {
   Promise.all([
     runServicePopulate('content', apps.content.env),
     runServicePopulate('auth', { ...apps.auth.env, TENANT: tenant, EMAIL: email, PASSWORD: password })
-  ]).then(() => {
-    console.log('init data completed successfully!')
-    process.exit(0)
+  ]).then((results) => {
+	let [ output, code ] = getPopulateOutput(results);
+	console.log(output);
+    process.exit(code);
   }, () => {
     console.log('init data failed!')
     process.exit(1)
+  }).catch((err) => {
+	  console.log(err);
+	  process.exit(1);
   })
+}
+
+function getPopulateOutput(results) {
+	if (results[0] === 1) {
+		return ["Init data failed - Primary content is already created!", 1];
+	}
+	
+	if (results[1] === 1) {
+		return ["Init data failed - User is already created!", 1];
+	}
+
+	return ["Init data completed successfully!", 0];
 }
 
 function runServicePopulate(service, env) {
@@ -41,9 +57,9 @@ function runServicePopulate(service, env) {
 
     const f = fork(folder + '/helpers/init.js', null, { env })
 
-    f.on('close', () => {
+    f.on('close', (code) => {
       console.log(service, 'close')
-      resolve()
+      resolve(code)
     })
     f.on('error', () => {
       console.log(service, 'error')
