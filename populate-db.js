@@ -4,6 +4,14 @@ const { fork } = require('child_process');
 const { existsSync } = require('fs');
 const apps = require('./apps');
 const { tenant, scripts } = require('./config');
+const flags = require('./flags');
+const [ email, password ] = getCredentials(flags);
+
+function getCredentials(flags) {
+	return flags.hasOwnProperty("--credentials") ? 
+					flags["--credentials"].split(":") :
+					[process.env.EMAIL, process.env.PASSWORD];
+}
 
 runServicesPopulations();
 
@@ -11,7 +19,7 @@ function runServicesPopulations() {
   console.log('start populate data')
   Promise.all([
     runServicePopulate('content', apps.content.env),
-    runServicePopulate('auth', { ...apps.auth.env, TENANT: tenant })
+    runServicePopulate('auth', { ...apps.auth.env, TENANT: tenant, EMAIL: email, PASSWORD: password })
   ]).then(() => {
     console.log('init data completed successfully!')
     process.exit(0)
